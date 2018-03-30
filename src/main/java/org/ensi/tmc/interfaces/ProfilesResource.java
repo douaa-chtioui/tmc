@@ -33,21 +33,4 @@ public class ProfilesResource {
             return ResponseEntity.notFound().build();
         }
     }
-
-    private void updateUserProfile(User user, Profile updated) {
-        if (user.getProfile() != null) {
-            user.getProfile().setGender(updated.getGender());
-            user.getProfile().setSmocker(updated.isSmoker());
-            user.getProfile().setDiabetic(updated.isDiabetic());
-            user.getProfile().setDyslipidemic(updated.isDyslipidemic());
-            user.getProfile().setHypertensive(updated.isHypertensive());
-            user.getProfile().setFamilyAntecedent(updated.isFamilyAntecedent());
-            user.getProfile().setPersonalAntecedent(updated.isPersonalAntecedent());
-            user.getProfile().setMenopause(updated.isMenopause());
-            user.getProfile().setHeight(updated.getHeight());
-            user.getProfile().setWeight(updated.getWeight());
-        } else {
-            user.setProfile(updated);
-        }
-    }
 }

@@ -2,6 +2,7 @@ package org.ensi.tmc.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 
@@ -9,18 +10,17 @@ import javax.persistence.Id;
 public class Profile {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long identifier;
-
     private String gender;
     private boolean smoker;
-    private boolean menopause ;
+    private boolean menopause;
     private int height;
     private int weight;
-    private boolean married ;
-    private boolean diabetic ;
-    private boolean hypertensive ;
-    private boolean dyslipidemic ;
+    private boolean married;
+    private boolean diabetic;
+    private boolean hypertensive;
+    private boolean dyslipidemic;
     private boolean personalAntecedent;
     private boolean familyAntecedent;
 
