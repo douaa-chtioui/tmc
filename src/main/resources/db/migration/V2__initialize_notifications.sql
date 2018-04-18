@@ -1,6 +1,0 @@
-INSERT INTO NOTIFICATION (category, text)
-VALUES
-('SMOKING', 'TEXT 1'),
-('SMOKING', 'TEXT 2'),
-('OBESITY', 'TEXT 3'),
-('OBESITY', 'TEXT 4');

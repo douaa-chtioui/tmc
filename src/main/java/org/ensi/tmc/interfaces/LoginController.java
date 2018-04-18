@@ -4,10 +4,12 @@ import org.ensi.tmc.domain.User;
 import org.ensi.tmc.domain.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -18,6 +20,11 @@ public class LoginController {
     @Autowired
     public LoginController(UserRepository userRepository) {
         this.userRepository = userRepository;
+    }
+
+    @GetMapping("/users")
+    public ResponseEntity<List<User>> fetchUsers() {
+        return ResponseEntity.ok(this.userRepository.findAll());
     }
 
     @PostMapping("/login")

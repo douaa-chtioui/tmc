@@ -1,6 +1,5 @@
 package org.ensi.tmc;
 
-import org.ensi.tmc.domain.UserRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

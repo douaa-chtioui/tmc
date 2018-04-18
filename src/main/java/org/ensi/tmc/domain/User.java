@@ -1,9 +1,12 @@
 package org.ensi.tmc.domain;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "TYPE")
 public class User {
 
     @Id
@@ -13,11 +16,7 @@ public class User {
     private String password;
     private String firstname;
     private String lastname;
-    private int age;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "profile_id")
-    private Profile profile;
+    private Integer age;
 
     public User() {
     }
@@ -34,7 +33,7 @@ public class User {
         return lastname;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
@@ -46,11 +45,4 @@ public class User {
         return email;
     }
 
-    public Profile getProfile() {
-        return profile;
-    }
-
-    public void setProfile(Profile profile) {
-        this.profile = profile;
-    }
 }
