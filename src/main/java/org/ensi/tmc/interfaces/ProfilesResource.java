@@ -18,8 +18,8 @@ public class ProfilesResource {
     }
 
     @PutMapping("/patients/{patientId}/profile")
-    public ResponseEntity update(@PathVariable long userId, @RequestBody Profile profile) {
-        Optional<Patient> optionalUser = patientRepository.findById(userId);
+    public ResponseEntity update(@PathVariable long patientId, @RequestBody Profile profile) {
+        Optional<Patient> optionalUser = patientRepository.findById(patientId);
         if (optionalUser.isPresent()) {
             Patient user = optionalUser.get();
             user.setProfile(profile);
