@@ -1,9 +1,6 @@
 package org.ensi.tmc.interfaces;
 
-import org.ensi.tmc.domain.Patient;
-import org.ensi.tmc.domain.Profile;
-import org.ensi.tmc.domain.User;
-import org.ensi.tmc.domain.UserRepository;
+import org.ensi.tmc.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -56,6 +53,7 @@ public class LoginController {
             view.profile = patient.getProfile();
             view.hasDoctor = patient.getDoctor() != null;
             view.patient = true;
+            view.checkups = patient.getCheckups();
         }
         return view;
     }
@@ -69,6 +67,7 @@ public class LoginController {
         public Profile profile;
         public boolean hasDoctor;
         public boolean patient;
+        public List<Checkup> checkups;
     }
 
 

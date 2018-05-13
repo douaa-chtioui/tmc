@@ -1,6 +1,7 @@
 package org.ensi.tmc.domain;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -45,5 +46,16 @@ public class Patient extends User {
 
     public void setDoctor(Doctor doctor) {
         this.doctor = doctor;
+    }
+
+    public List<Checkup> getCheckups() {
+        if(checkups == null){
+            this.checkups = new ArrayList<>();
+        }
+        return checkups;
+    }
+
+    public void setCheckups(List<Checkup> checkups) {
+        this.checkups = checkups;
     }
 }
