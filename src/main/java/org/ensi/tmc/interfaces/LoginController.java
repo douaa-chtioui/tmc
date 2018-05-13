@@ -55,6 +55,7 @@ public class LoginController {
             Patient patient = (Patient) user;
             view.profile = patient.getProfile();
             view.hasDoctor = patient.getDoctor() != null;
+            view.patient = true;
         }
         return view;
     }
@@ -67,6 +68,7 @@ public class LoginController {
         public Integer age;
         public Profile profile;
         public boolean hasDoctor;
+        public boolean patient;
     }
 
 

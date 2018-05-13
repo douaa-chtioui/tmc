@@ -11,6 +11,10 @@ public class Patient extends User {
     @JoinColumn(name = "profile_id")
     private Profile profile;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "chronic_disease_id")
+    private ChronicDisease chronicDisease;
+
     @ManyToOne
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
@@ -25,6 +29,14 @@ public class Patient extends User {
 
     public void setProfile(Profile profile) {
         this.profile = profile;
+    }
+
+    public ChronicDisease getChronicDisease() {
+        return chronicDisease;
+    }
+
+    public void setChronicDisease(ChronicDisease chronicDisease) {
+        this.chronicDisease = chronicDisease;
     }
 
     public Doctor getDoctor() {
