@@ -1,6 +1,14 @@
 package org.ensi.tmc.domain;
 
+
 import javax.persistence.*;
+
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 
 @Entity
 public class ChronicDisease {
@@ -63,6 +71,7 @@ public class ChronicDisease {
         this.biologicalValve = biologicalValve;
     }
 
+
     public boolean isStentsPose() {
         return stentsPose;
     }
@@ -71,13 +80,16 @@ public class ChronicDisease {
         this.stentsPose = stentsPose;
     }
 
+
     public boolean isAortoCoronaryBypass() {
         return aortoCoronaryBypass;
     }
 
+
     public void setAortoCoronaryBypass(boolean aortoCoronaryBypass) {
         this.aortoCoronaryBypass = aortoCoronaryBypass;
     }
+
 
     public boolean isPacemaker() {
         return pacemaker;
@@ -87,6 +99,7 @@ public class ChronicDisease {
         this.pacemaker = pacemaker;
     }
 
+
     public boolean isDefibrillator() {
         return defibrillator;
     }
@@ -95,13 +108,16 @@ public class ChronicDisease {
         this.defibrillator = defibrillator;
     }
 
+
     public boolean isTripleRoom() {
         return tripleRoom;
     }
 
+
     public void setTripleRoom(boolean tripleRoom) {
         this.tripleRoom = tripleRoom;
     }
+
 
     public boolean isVentricularFibrillation() {
         return ventricularFibrillation;
@@ -111,4 +127,3 @@ public class ChronicDisease {
         this.ventricularFibrillation = ventricularFibrillation;
     }
 }
-
