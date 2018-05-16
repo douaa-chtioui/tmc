@@ -15,7 +15,7 @@ public class Checkup {
     @ManyToOne
     @JoinColumn(name = "user_id")
     @JsonIgnore
-    private User user;
+    private Patient patient;
 
     private Date checkupDate;
 
@@ -31,12 +31,12 @@ public class Checkup {
         this.identifier = identifier;
     }
 
-    public User getUser() {
-        return user;
+    public Patient getPatient() {
+        return patient;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setPatient(Patient patient) {
+        this.patient = patient;
     }
 
     public Date getCheckupDate() {

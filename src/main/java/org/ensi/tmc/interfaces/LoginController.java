@@ -8,17 +8,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 public class LoginController {
 
     private final UserRepository userRepository;
+    private final CheckupRepository checkupRepository;
 
     @Autowired
-    public LoginController(UserRepository userRepository) {
+    public LoginController(UserRepository userRepository, CheckupRepository checkupRepository) {
         this.userRepository = userRepository;
+        this.checkupRepository = checkupRepository;
     }
 
     @GetMapping("/users")
@@ -41,7 +45,7 @@ public class LoginController {
         public String password;
     }
 
-    private static UserView toUserView(User user) {
+    private UserView toUserView(User user) {
         UserView view = new UserView();
         view.identifier = user.getIdentifier();
         view.email = user.getEmail();
@@ -53,7 +57,25 @@ public class LoginController {
             view.profile = patient.getProfile();
             view.hasDoctor = patient.getDoctor() != null;
             view.patient = true;
-            view.checkups = patient.getCheckups();
+            view.checkups = patient.getCheckups().stream().map(checkup -> {
+                CheckupView checkupView = new CheckupView();
+                checkupView.checkupDate = checkup.getCheckupDate();
+                checkupView.doctorComment = checkup.getDoctorComment();
+                checkupView.patientComment = checkup.getPatientComment();
+                checkupView.identifier = checkup.getIdentifier();
+                return checkupView;
+            }).collect(Collectors.toList());
+        } else {
+            view.checkups = this.checkupRepository.findByPatientDoctorIdentifier(user.getIdentifier())
+                    .stream().map(checkup -> {
+                        CheckupView checkupView = new CheckupView();
+                        checkupView.checkupDate = checkup.getCheckupDate();
+                        checkupView.doctorComment = checkup.getDoctorComment();
+                        checkupView.patientComment = checkup.getPatientComment();
+                        checkupView.identifier = checkup.getIdentifier();
+                        checkupView.patientProfile = checkup.getPatient().getProfile();
+                        return checkupView;
+                    }).collect(Collectors.toList());
         }
         return view;
     }
@@ -67,7 +89,19 @@ public class LoginController {
         public Profile profile;
         public boolean hasDoctor;
         public boolean patient;
-        public List<Checkup> checkups;
+        public List<CheckupView> checkups;
+    }
+
+    private static class CheckupView {
+        public long identifier;
+
+        public Profile patientProfile;
+
+        public Date checkupDate;
+
+        public String patientComment;
+
+        public String doctorComment;
     }
 
 

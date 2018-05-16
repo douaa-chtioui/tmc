@@ -8,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RestController
 public class CheckupsResource {
@@ -25,10 +23,10 @@ public class CheckupsResource {
     }
 
     @PostMapping("/patients/{patientId}/checkups")
-    public ResponseEntity update(@PathVariable long patientId, @RequestBody Checkup checkup) {
+    public ResponseEntity create(@PathVariable long patientId, @RequestBody Checkup checkup) {
         Optional<Patient> optionalUser = patientRepository.findById(patientId);
         if (optionalUser.isPresent()) {
-            checkup.setUser(optionalUser.get());
+            checkup.setPatient(optionalUser.get());
             this.checkupRepository.save(checkup);
             return ResponseEntity.noContent().build();
         } else {
@@ -36,7 +34,7 @@ public class CheckupsResource {
         }
     }
 
-    @PutMapping("/patients/{patientId}/checkups/{checkupId}")
+    @PutMapping("/checkups/{checkupId}")
     public ResponseEntity update(@PathVariable long checkupId, @RequestBody Comment comment) {
         Optional<Checkup> optionalCheckup = checkupRepository.findById(checkupId);
         if (optionalCheckup.isPresent()) {

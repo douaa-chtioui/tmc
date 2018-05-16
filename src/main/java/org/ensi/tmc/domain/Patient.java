@@ -20,7 +20,7 @@ public class Patient extends User {
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "patient")
     private List<Checkup> checkups;
 
 

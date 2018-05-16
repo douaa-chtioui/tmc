@@ -6,5 +6,5 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CheckupRepository extends JpaRepository<Checkup, Long> {
-    List<Checkup> findByUserIdentifier(long patientId);
+    List<Checkup> findByPatientDoctorIdentifier(long doctorId);
 }
